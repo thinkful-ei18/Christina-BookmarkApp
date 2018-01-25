@@ -63,14 +63,14 @@ const bookmarkList = (function () {
       console.log('hide or unhide!');
       $(event.target).closest('.container').find('.new-bookmark-form').toggleClass('hidden');
       //$(event.target).closest('div').toggleClass('hidden');
-    }));
+      toggleAddButtonHide();
+        }));
   };
 
   const handleNewBookmarkMake = function () {
     //get info from form
     $('.new-bookmark-form').submit(event => {
       event.preventDefault();
-      //const currentTarget = $(event.currentTarget);
       const bookmarkName = $('.js-bookmark-title').val();
       const bookmarkDescription = $('.js-bookmark-description').val();
       const bookmarkLink = $('.js-bookmark-link').val();
@@ -82,20 +82,35 @@ const bookmarkList = (function () {
       }));
       $(event.currentTarget).toggleClass('hidden');
       console.log('should unhide now');
-      //$(event.target).closest('.new-boomark-button').toggleClass('hidden');
-      //handleClearNewBookmarkForm();
+      toggleAddButtonHide();
+      handleClearNewBookmarkForm();
     });
   };
 
-  // const handleClearNewBookmarkForm = function () {
-  //   const nameField = $('js-bookmark-title');
-  //   nameField.val('');
-  // };
+  const toggleAddButtonHide = function () {
+    //when form open hide
+    //form submit unhide
+    $('#new-bookmark-add-form').toggleClass('hidden');
+    console.log('toggle hidden on button');
+  };
+
+  const handleClearNewBookmarkForm = function () {
+    console.log('clearing fields');
+    const nameField = $('.js-bookmark-title');
+    const descriptionField = $('.js-bookmark-description');
+    const linkField = $('.js-bookmark-link');
+    const ratingField = $('.js-bookmark-rating');
+    nameField.val('');
+    descriptionField.val('');
+    linkField.val('');
+    ratingField.val('');
+  };
 
   const handleNewBookmarkCancel = function () {
     $('#cancel-submit').click(event => {
       event.preventDefault();
       $(event.target).closest('.container').find('.new-bookmark-form').toggleClass('hidden');
+      toggleAddButtonHide();
     });
   };
 
