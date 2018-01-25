@@ -8,12 +8,21 @@ const bookmarkList = (function () {
   const generateHTML = function (bookmark) {
     //generate HTML of bookmark from bookmark object passed by bookmarkFromStore
     //find if object is expanded and generate correct HTML
+    let expandedHTML = '';
+    let unExpandedHTML = `<img src = 'https://d30y9cdsu7xlg0.cloudfront.net/png/1241426-200.png' class = 'click-to-expand'></img>`;
+    if (bookmark.expanded === true) {
+      expandedHTML =
+        `<span>${bookmark.desc}</span>
+        <a href = ${bookmark.url} target="_blank" >Visit ${bookmark.title}</a>
+        <img src = 'http://www.pvhc.net/img52/egmihvcuynqnfibvzatu.png' class = 'click-to-collapse'></img>`;
+      unExpandedHTML = '';
+    }
   return `
-    <li class = 'js-bookmark-element bookmarkID = '${bookmark.id}'>
+    <li class = 'js-bookmark-element' data-bookmark-id ='${bookmark.id}'>
     <span>${bookmark.title}</span>
-    <span>${bookmark.desc}</span>
-    <a href = ${bookmark.url} target="_blank" >Visit ${bookmark.title}</a>
     <span>${bookmark.rating}</span>
+    ${unExpandedHTML}
+    ${expandedHTML}
     </li>`;
   };
 
@@ -29,6 +38,19 @@ const bookmarkList = (function () {
     //change store.expanded = true
     //change html to expanded state
     //render
+    $('.bookmark-list').on('click', '.click-to-expand', (event => {
+      const id = getIdFromElement(event.target);
+      store.findById(id).expanded = true;
+      render();
+    }));
+  };
+
+  const handleBookmarkCollapse = function () {
+    $('.bookmark-list').on('click', '.click-to-collapse', (event => {
+      const id = getIdFromElement(event.target);
+      store.findById(id).expanded = false;
+      render();
+    }));
   };
 
   const handleNewBookmarkClick = function () {
@@ -40,6 +62,7 @@ const bookmarkList = (function () {
     $('#new-bookmark-add-form').click((event => {
       console.log('hide or unhide!');
       $(event.target).closest('.container').find('.new-bookmark-form').toggleClass('hidden');
+      //$(event.target).closest('div').toggleClass('hidden');
     }));
   };
 
@@ -58,6 +81,8 @@ const bookmarkList = (function () {
         render();
       }));
       $(event.currentTarget).toggleClass('hidden');
+      console.log('should unhide now');
+      //$(event.target).closest('.new-boomark-button').toggleClass('hidden');
       //handleClearNewBookmarkForm();
     });
   };
@@ -67,12 +92,13 @@ const bookmarkList = (function () {
   //   nameField.val('');
   // };
 
-  // const handleNewBookmarkCancel = function () {
-  //   $('#cancel-submit').click(event => {
-  //     event.preventDefault();
-  //     $(event.target).closest('.container').find('.new-bookmark-form').toggleClass('hidden');
-  //   });
-  // };
+  const handleNewBookmarkCancel = function () {
+    $('#cancel-submit').click(event => {
+      event.preventDefault();
+      $(event.target).closest('.container').find('.new-bookmark-form').toggleClass('hidden');
+    });
+  };
+
 
   const editBookmarkClick = function () {
     //listen for update bookmark data
@@ -100,13 +126,16 @@ const bookmarkList = (function () {
 
   const getIdFromElement = function (item) {
     //get id from closest item
+    return $(item).closest('.js-bookmark-element').data('bookmark-id');
   };
 
   const bindEventListeners = function() {
     //invoke all event listeners
     handleNewBookmarkMake(),
     handleNewBookmarkClick();
-    //handleNewBookmarkCancel();
+    handleNewBookmarkCancel();
+    handleBookmarkExpand();
+    handleBookmarkCollapse();
     console.log('hello');
   };
 

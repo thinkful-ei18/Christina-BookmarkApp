@@ -35,3 +35,7 @@ body {
   margin-bottom: 15px;
 }
 
+.click-to-expand, .click-to-collapse {
+  height: 20px;
+}
+

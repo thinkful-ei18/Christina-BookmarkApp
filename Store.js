@@ -8,15 +8,16 @@ const store = (function () {
 
   const addingBookmark = false;
 
-  const addBookmark = function(bookmark) {
+  const addBookmark = function (bookmark) {
     //recieve bookmark object
     //add bookmark to store
+    bookmark.expanded = false;
     this.bookmarks.push(bookmark);
-    console.log(bookmark);
   };
 
   const findById = function (id) {
     //find bookmark by id
+    return this.bookmarks.find(item => item.id === id);
   };
 
   const findAndDelete = function (id) {
