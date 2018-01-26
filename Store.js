@@ -22,10 +22,11 @@ const store = (function () {
 
   const deleteItem = function (id) {
     //delete bookmark from store
-    this.bookmarks.splice(id, 1);
+    const index = this.bookmarks.findIndex((item => item.id === id));
+    this.bookmarks.splice(index, 1);
   };
 
-  const findAndUpdate = function (id, newData) {
+  const updateItem = function (id, newData) {
     //find id (findById)
     //update bookmark with newData
   };
@@ -35,7 +36,7 @@ const store = (function () {
     addBookmark,
     findById,
     deleteItem,
-    findAndUpdate,
+    updateItem,
     filterRating,
   };
 }());
