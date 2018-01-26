@@ -1,5 +1,15 @@
+.hidden {
+  display: none;
+}
+
+
+/*
 * {
   box-sizing: border-box;
+}
+
+.click-to-expand, .click-to-collapse {
+  height: 20px;
 }
 
 body {
@@ -7,12 +17,9 @@ body {
 }
 
 
-.hidden {
-  display: none;
-}
 
 .container {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -21,21 +28,21 @@ body {
   padding-left: 0;
 }
 
-.bookmark-list > li {
-  margin-bottom: 20px;
-  border: 1px solid grey;
-  padding: 20px;
+
+.bookmark-container {
+  display: inline-block;
+  height: 400px;
+  width: 400px;
+  background-color: red;
 }
 
 .bookmark-item {
-  display: block;
-  color: grey;
+  background-color: green;
   font-style: italic;
   font-size: 20px;
   margin-bottom: 15px;
 }
 
-.click-to-expand, .click-to-collapse {
-  height: 20px;
-}
 
+
+*/

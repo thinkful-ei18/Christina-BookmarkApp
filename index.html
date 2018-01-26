@@ -6,17 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Bookmarks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <!-- Compiled and minified CSS MATERIALIZE-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css"/>
 </head>
 
 <body>
   <div class="container">
+      <div class = 'col s6'>
     <h1>Your Bookmarks!</h1>
     <!--This would get generated depending on New Button!-->
-    <div class=n ew-bookmark-button js-new-bookmark-button>
+    
+    <div class= new-bookmark-button js-new-bookmark-button>
       <button id="new-bookmark-add-form">Make a new bookmark</button>
     </div>
-    <div class = filter-bookmarks js-filter-bookmarks>
+    <div class = 'filter-bookmarks js-filter-bookmarks input-field col s12'>
       <label for="rating-dropdown">Filter bookmarks</label>
       <select name='rating-dropdown' id='js-rating-dropdown'>
         <option value=""></option>
@@ -28,7 +33,7 @@
       </select>
       <button class ='filter-button js-filter-button'>Clear filter</button>
     </div>
-    <form class="hidden new-bookmark-form">
+    <form class="hidden new-bookmark-form input-field">
       <label for="bookmark-title">Bookmark title</label>
       <input type='text' name='bookmark-title' class='bookmark-title js-bookmark-title' placeholder='Google'>
       <label for='bookmark-description'>Bookmark description</label>
@@ -52,12 +57,17 @@
       <button type='button' id='cancel-submit'>Cancel</button>
 
     </form>
+  </div>
+  <div class = 'row'>
     <ul class="bookmark-list js-bookmark-list">
     </ul>
+    </div>
   </div>
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- Compiled and minified JavaScript MATERIALIZE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <script src="api.js"></script>
 <script src="GenerateHTML.js"></script>
 <script src="store.js"></script>

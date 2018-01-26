@@ -21,6 +21,7 @@ const bookmarkList = (function () {
     //render
     $('.bookmark-list').on('click', '.click-to-expand', (event => {
       const id = getIdFromElement(event.target);
+      console.log('expanding!');
       store.findById(id).expanded = true;
       render();
     }));
@@ -28,6 +29,7 @@ const bookmarkList = (function () {
 
   const handleBookmarkCollapse = function () {
     $('.bookmark-list').on('click', '.click-to-collapse', (event => {
+      console.log('collapsing!');
       const id = getIdFromElement(event.target);
       store.findById(id).expanded = false;
       render();
