@@ -6,7 +6,7 @@ const store = (function () {
 
   const filterRating = '';
 
-  const addingBookmark = false;
+  const creatingBookmark = false;
 
   const addBookmark = function (bookmark) {
     //recieve bookmark object
@@ -38,5 +38,6 @@ const store = (function () {
     deleteItem,
     updateItem,
     filterRating,
+    creatingBookmark,
   };
 }());

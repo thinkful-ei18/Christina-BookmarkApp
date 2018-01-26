@@ -1,36 +1,16 @@
 //handle clicks
 //generate HTML
 //bookmark functions
-/* global store, api */
+/* global store, api, generateHTML */
 'use strict'; 
 
 const bookmarkList = (function () {
-  const generateHTML = function (bookmark) {
-    //generate HTML of bookmark from bookmark object passed by bookmarkFromStore
-    //find if object is expanded and generate correct HTML
-    let expandedHTML = '';
-    let unExpandedHTML = `<img src = 'https://d30y9cdsu7xlg0.cloudfront.net/png/1241426-200.png' class = 'click-to-expand'></img>`;
-    if (bookmark.expanded === true) {
-      expandedHTML =
-        `<span>${bookmark.desc}</span>
-        <a href = ${bookmark.url} target="_blank" >Visit ${bookmark.title}</a>
-        <img src = 'http://www.pvhc.net/img52/egmihvcuynqnfibvzatu.png' class = 'click-to-collapse'></img>`;
-      unExpandedHTML = '';
-    }
-  return `
-    <li class = 'js-bookmark-element' data-bookmark-id ='${bookmark.id}'>
-    <span>${bookmark.title}</span>
-    <span>${bookmark.rating}</span>
-    ${unExpandedHTML}
-    ${expandedHTML}
-    <button type = 'button' id = 'js-button-delete'>Delete bookmark</button>
-    </li>`;
-  };
+  
 
   const generateBookmarkString = function (bookmarkList) {
     //grab bookmarks from store from (render())
     //join HTML returned from generateHTML + give to render
-    const bookmarks = bookmarkList.map((bookmark => generateHTML(bookmark)));
+    const bookmarks = bookmarkList.map((bookmark => generateHTML.createHTML(bookmark)));
     return bookmarks.join('');
   };
 
@@ -64,6 +44,7 @@ const bookmarkList = (function () {
       console.log('hide or unhide!');
       $(event.target).closest('.container').find('.new-bookmark-form').toggleClass('hidden');
       //$(event.target).closest('div').toggleClass('hidden');
+      store.creatingBookmark = true;
       toggleAddButtonHide();
         }));
   };
@@ -91,8 +72,10 @@ const bookmarkList = (function () {
   const toggleAddButtonHide = function () {
     //when form open hide
     //form submit unhide
-    $('#new-bookmark-add-form').toggleClass('hidden');
-    console.log('toggle hidden on button');
+    if (store.creatingBookmark === true) {
+      $('#new-bookmark-add-form').toggleClass('hidden');
+      console.log(store.creatingBookmark);
+    }
   };
 
   const handleClearNewBookmarkForm = function () {
@@ -113,13 +96,6 @@ const bookmarkList = (function () {
       $(event.target).closest('.container').find('.new-bookmark-form').toggleClass('hidden');
       toggleAddButtonHide();
     });
-  };
-
-
-  const editBookmarkClick = function () {
-    //listen for update bookmark data
-    //update bookmark on server + callback:update bookmark on store
-    //render
   };
 
   const handleBookmarkDelete = function () {
@@ -143,6 +119,12 @@ const bookmarkList = (function () {
     //grab ratingValue from DOM
     //set store.filterRating
 
+  };
+
+  const editBookmarkClick = function () {
+    //listen for update bookmark data
+    //update bookmark on server + callback:update bookmark on store
+    //render
   };
 
   const render = function () {
