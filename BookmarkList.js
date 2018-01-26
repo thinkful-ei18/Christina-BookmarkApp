@@ -113,11 +113,23 @@ const bookmarkList = (function () {
 
   const handleToggleFilter = function () {
     //if filter is off turn on - etc
+    $('.js-filter-button').click((event => {
+      store.filterRating = '';
+      $('#js-rating-dropdown').val('');
+      console.log('should be empty ' + store.filterRating);
+      render();
+    }));
   };
 
   const handleFilterRatingClick = function () {
     //grab ratingValue from DOM
     //set store.filterRating
+    $('#js-rating-dropdown').change((event => {
+      const filterValue = ($('#js-rating-dropdown').val());
+      store.filterRating = filterValue;
+      console.log(store.filterRating);
+      render();
+    }));
 
   };
 
@@ -131,7 +143,18 @@ const bookmarkList = (function () {
     //filter by store.filterRating
     //grab HTML from generateBookmarkString set .html =
     //check if addingBookmark is true
-    const bookmarkHTML = generateBookmarkString(store.bookmarks);
+
+    let renderThese = store.bookmarks;
+
+    if (store.filterRating !== '') {
+      renderThese = store.bookmarks.filter(item => {
+        console.log('filtering!');
+        console.log(item.rating);
+        return item.rating >= store.filterRating;
+      });
+    }
+
+    const bookmarkHTML = generateBookmarkString(renderThese);
     $('.js-bookmark-list').html(bookmarkHTML);
   };
 
@@ -148,6 +171,8 @@ const bookmarkList = (function () {
     handleBookmarkExpand();
     handleBookmarkCollapse();
     handleBookmarkDelete();
+    handleFilterRatingClick();
+    handleToggleFilter();
     console.log('hello');
   };
 
