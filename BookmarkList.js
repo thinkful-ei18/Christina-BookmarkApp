@@ -113,15 +113,15 @@ const bookmarkList = (function () {
   }));
 };
 
-  const handleToggleFilter = function () {
-    //if filter is off turn on - etc
-    $('.js-filter-button').click((event => {
-      store.filterRating = '';
-      $('#js-rating-dropdown').val('');
-      console.log('should be empty ' + store.filterRating);
-      render();
-    }));
-  };
+  // const handleToggleFilter = function () {
+  //   //if filter is off turn on - etc
+  //   $('.js-filter-button').click((event => {
+  //     store.filterRating = '';
+  //     $('#js-rating-dropdown').val('');
+  //     console.log('should be empty ' + store.filterRating);
+  //     render();
+  //   }));
+  // };
 
   const handleFilterRatingClick = function () {
     //grab ratingValue from DOM
@@ -174,7 +174,7 @@ const bookmarkList = (function () {
     handleBookmarkCollapse();
     handleBookmarkDelete();
     handleFilterRatingClick();
-    handleToggleFilter();
+    //handleToggleFilter();
     console.log('hello');
   };
 

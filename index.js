@@ -13,6 +13,7 @@
 /* global bookmarkList */
 
 $(document).ready(function() {
+  $('select').material_select();
   bookmarkList.bindEventListeners();
   api.getItems(items => {
     items.forEach((item => {

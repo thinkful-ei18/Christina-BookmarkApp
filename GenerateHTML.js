@@ -6,6 +6,7 @@ const generateHTML = (function () {
     //generate HTML of bookmark from bookmark object passed by bookmarkFromStore
     //find if object is expanded and generate correct HTML
     let expandedHTML = '';
+    let hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
     if (bookmark.expanded === true) {
     expandedHTML =
         `<h3>${bookmark.desc}</h3>
@@ -18,7 +19,7 @@ const generateHTML = (function () {
       <div class = 'card'>
       <li class = 'bookmark-item js-bookmark-element' data-bookmark-id ='${bookmark.id}'>
         <div class = 'card-image'>
-        <img src="http://thecatapi.com/api/images/get?format=src&results_per_page=20">
+          <div class = 'hue' style="background-color:${hue};"></div>
             <span class = 'card-title'>${bookmark.title}</span>
             <div class = '${bookmark.expanded ? 'click-to-collapse' : 'click-to-expand'}'>
             <a class = 'btn-floating halfway-fab red'><i class = 'material-icons'>${bookmark.expanded ? 'keyboard_arrow_up' : 'add'}</i></a>
@@ -26,9 +27,9 @@ const generateHTML = (function () {
             </div>
         </div>
         <div class = 'card-content'>
-          <p>${bookmark.rating}</p>
+          <p>${bookmark.rating} Stars</p>
           ${expandedHTML}
-          <button type = 'button' id = 'js-button-delete'>Delete bookmark</button>
+          <a class="waves-effect waves-teal btn-flat right" id = 'js-button-delete'>Delete</a>
         </div>
       </div>
     </div>

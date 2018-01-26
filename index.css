@@ -2,7 +2,23 @@
   display: none;
 }
 
+.card-image .hue {
+  height: 100px;
+}
 
+h3 {
+  font-size: 14px;
+}
+
+.card .card-content {
+  padding: 40px;
+  border-radius: 0 0 2px 2px;
+}
+
+.card {
+  height: 100%;
+  overflow: hidden;
+}
 /*
 * {
   box-sizing: border-box;
