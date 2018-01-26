@@ -3,7 +3,7 @@
 'use strict';
 
 const api = (function () {
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/christina2';
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/christina';
 
   const getItems = function (callback) {
     //get items from server with ajax GET
@@ -37,6 +37,12 @@ const api = (function () {
   const deleteItem = function (id, callback) {
     //get item by id
     //delete item from server
+    $.ajax ({
+      url : `${BASE_URL}/bookmarks/${id}`,
+      method : 'DELETE',
+      contentType : 'application/json',
+      success : callback,
+    });
   };
 
   return {
@@ -44,5 +50,5 @@ const api = (function () {
     addItem,
     updateItem,
     deleteItem,
-  }
+  };
 }());

@@ -23,6 +23,7 @@ const bookmarkList = (function () {
     <span>${bookmark.rating}</span>
     ${unExpandedHTML}
     ${expandedHTML}
+    <button type = 'button' id = 'js-button-delete'>Delete bookmark</button>
     </li>`;
   };
 
@@ -121,6 +122,19 @@ const bookmarkList = (function () {
     //render
   };
 
+  const handleBookmarkDelete = function () {
+    //listen for click on delete
+    //update on server + store on callback
+    //render
+    $('.js-bookmark-list').on('click', '#js-button-delete', (event => {
+      const bookmarkId = getIdFromElement(event.target);
+      api.deleteItem(bookmarkId, (item => {
+        store.deleteItem(bookmarkId);
+        render();
+      }));
+  }));
+};
+
   const handleToggleFilter = function () {
     //if filter is off turn on - etc
   };
@@ -151,6 +165,7 @@ const bookmarkList = (function () {
     handleNewBookmarkCancel();
     handleBookmarkExpand();
     handleBookmarkCollapse();
+    handleBookmarkDelete();
     console.log('hello');
   };
 

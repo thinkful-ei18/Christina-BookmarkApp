@@ -20,10 +20,9 @@ const store = (function () {
     return this.bookmarks.find(item => item.id === id);
   };
 
-  const findAndDelete = function (id) {
-    //find bookmark by id (findById)
+  const deleteItem = function (id) {
     //delete bookmark from store
-    
+    this.bookmarks.splice(id, 1);
   };
 
   const findAndUpdate = function (id, newData) {
@@ -35,7 +34,7 @@ const store = (function () {
     bookmarks,
     addBookmark,
     findById,
-    findAndDelete,
+    deleteItem,
     findAndUpdate,
     filterRating,
   };
