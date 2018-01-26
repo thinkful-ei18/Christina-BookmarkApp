@@ -3,62 +3,44 @@
 }
 
 .card-image .hue {
-  height: 100px;
+  height: 200px;
 }
 
 h3 {
   font-size: 14px;
 }
 
-.card .card-content {
-  padding: 40px;
-  border-radius: 0 0 2px 2px;
-}
-
 .card {
-  height: 100%;
-  overflow: hidden;
-}
-/*
-* {
-  box-sizing: border-box;
+  height: 51vh;
 }
 
-.click-to-expand, .click-to-collapse {
-  height: 20px;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-}
-
-
-
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.bookmark-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-
-.bookmark-container {
+.stars-outer {
   display: inline-block;
-  height: 400px;
-  width: 400px;
-  background-color: red;
+  position: relative;
+  font-family: FontAwesome;
 }
 
-.bookmark-item {
-  background-color: green;
-  font-style: italic;
-  font-size: 20px;
-  margin-bottom: 15px;
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
 }
 
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0%;
+  /*
+  20% 1
+  40% 2
+  60% 3
+  80% 4
+  100% 5
+  */
+}
 
-
-*/
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}

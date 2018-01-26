@@ -59,6 +59,7 @@ const bookmarkList = (function () {
       const bookmarkDescription = $('.js-bookmark-description').val();
       const bookmarkLink = $('.js-bookmark-link').val();
       const bookmarkRating = $('.js-bookmark-rating').val();
+      console.log(bookmarkRating);
       api.addItem(bookmarkName, bookmarkDescription, bookmarkLink, bookmarkRating, (newItem => {
         store.addBookmark(newItem);
         console.log('item added to store');

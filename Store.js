@@ -1,4 +1,5 @@
 // * STORE: title, link, description, rating (1-5), expanded(default:false)
+/* global randomColor */
 'use strict';
 
 const store = (function () {
@@ -12,6 +13,7 @@ const store = (function () {
     //recieve bookmark object
     //add bookmark to store
     bookmark.expanded = false;
+    bookmark.hue = randomColor();
     this.bookmarks.push(bookmark);
   };
 
